@@ -1,13 +1,12 @@
 import type { PageServerLoad } from './$types';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import { SECRET_CONTENTFUL_ACCESS_TOKEN, SECRET_CONTENTFUL_SPACE_ID } from '$env/static/private'
 
 export const load: PageServerLoad = async () => {
-  const SPACE_ID = "ci2s3anww4fk";
-  const ACCESS_TOKEN = "0D1fJmNGwu37Vi82AWUdKv_8gq1Nxi3DbPAavsu2OyU";
   const CONTENT_TYPE = "produitsTest"; // Change selon ton content type
 
-  const url = new URL(`https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries`);
-  url.searchParams.append('access_token', ACCESS_TOKEN);
+  const url = new URL(`https://cdn.contentful.com/spaces/${SECRET_CONTENTFUL_SPACE_ID}/environments/master/entries`);
+  url.searchParams.append('access_token', SECRET_CONTENTFUL_ACCESS_TOKEN);
   url.searchParams.append('content_type', CONTENT_TYPE);
   url.searchParams.append('include', '2'); // pour récupérer la gallery
 
